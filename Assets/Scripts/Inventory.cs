@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Inventory : MonoBehaviour
 {
+    public GameObject dropPoint;
+
+    [SerializeField]
+    private Sprite transparent;
+
     [SerializeField]
     private GameObject inventoryPanel;
 
@@ -15,6 +23,36 @@ public class Inventory : MonoBehaviour
     private List<ItemData> content = new List<ItemData>();
 
     const int InventoryMaxSize = 24;
+
+
+    [Header("Action Panel References")]
+
+    [SerializeField]
+    private GameObject actionPanel;
+
+
+    [SerializeField]
+    private GameObject useItemButton;
+
+
+    [SerializeField]
+    private GameObject dropItemButton;
+
+
+    [SerializeField]
+    private GameObject equipItemButton;
+
+
+    [SerializeField]
+    private GameObject destroyItemButton;
+
+    private ItemData itemCurrentlySelected;
+
+    public static Inventory instance;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -42,8 +80,6 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    // ======= Visuel/UI
-
     public void HideOrShowInventory()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
@@ -51,10 +87,80 @@ public class Inventory : MonoBehaviour
 
     private void RefreshContent()
     {
+        for (int i = 0; i < inventoryContent.childCount; i++)
+        {
+            inventoryContent.GetChild(i).GetComponent<Slot>().item = null;
+            inventoryContent.GetChild(i).GetComponent<Slot>().itemVisual.sprite = transparent;
+        }
+
         for (int i = 0; i < content.Count; i++) {
             Slot currentSlot = inventoryContent.GetChild(i).GetComponent<Slot>();
             currentSlot.item = content[i];
             currentSlot.itemVisual.sprite = content[i].visual;
         }
+    }
+
+    public void OpenActionPanel(ItemData item, RectTransform currentSlot)
+    {
+
+        if (item == null)
+        {
+            actionPanel.SetActive(false);
+            return;
+        }
+
+        itemCurrentlySelected = item;
+        switch(item.type)
+        {
+            case ItemType.Ressource:
+                useItemButton.SetActive(false);
+                equipItemButton.SetActive(false);
+                break;
+            case ItemType.Equipment:
+                useItemButton.SetActive(false);
+                equipItemButton.SetActive(true);
+                break;
+            case ItemType.Consumable:
+                useItemButton.SetActive(true);
+                equipItemButton.SetActive(false);
+                break;
+        }
+        Vector3 underSlotPos = new Vector3(0,0,0);
+        underSlotPos.x = currentSlot.position.x;
+        underSlotPos.y = currentSlot.position.y - currentSlot.sizeDelta.x / 2;
+
+        actionPanel.transform.position = underSlotPos;
+        actionPanel.SetActive(true);
+    }
+
+    public void CloseActionPanel()
+    {
+        actionPanel.SetActive(false);
+        //itemCurrentlySelected = null;
+    }
+
+    public void DestroyItem()
+    {
+        content.Remove(itemCurrentlySelected);
+        RefreshContent();
+        CloseActionPanel();
+    }
+
+    public void UseItem()
+    {
+        Debug.Log("use");
+        CloseActionPanel();
+    }
+
+    public void EquipItem()
+    {
+        Debug.Log("equip");
+        CloseActionPanel();
+    }
+
+    public void DropItem()
+    {
+        Instantiate(itemCurrentlySelected.prefab, dropPoint.transform.position, dropPoint.transform.rotation);
+        DestroyItem();
     }
 }
