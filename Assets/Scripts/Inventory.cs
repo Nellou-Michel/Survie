@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject equipItemButton;
 
+    [SerializeField]
+    private EquipmentLibrary equipmentLibrary;
 
     [SerializeField]
     private GameObject destroyItemButton;
@@ -136,7 +139,7 @@ public class Inventory : MonoBehaviour
     public void CloseActionPanel()
     {
         actionPanel.SetActive(false);
-        //itemCurrentlySelected = null;
+        itemCurrentlySelected = null;
     }
 
     public void DestroyItem()
@@ -154,7 +157,23 @@ public class Inventory : MonoBehaviour
 
     public void EquipItem()
     {
-        Debug.Log("equip");
+        EquipmentLibraryItem equipmentLibraryItem = equipmentLibrary.content.Where(elem => elem.itemData == itemCurrentlySelected).First();
+        if(equipmentLibraryItem != null)
+        {
+            for (int i = 0; i < equipmentLibraryItem.elementsToDisabled.Length; i++)
+            {
+                equipmentLibraryItem.elementsToDisabled[i].SetActive(false);
+            }
+
+            for (int i = 0; i < equipmentLibraryItem.elementsToAble.Length; i++)
+            {
+                equipmentLibraryItem.elementsToAble[i].SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.Log("sus mmmmh aucun visuel correspond");
+        }
         CloseActionPanel();
     }
 

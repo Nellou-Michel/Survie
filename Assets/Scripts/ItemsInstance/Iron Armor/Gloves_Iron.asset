@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12d8411de53d39f4eb911b8523012b36, type: 3}
-  m_Name: Helmet
+  m_Name: Gloves_Iron
   m_EditorClassIdentifier: 
-  name: Helmet
-  description: Un casque en fer plutot robuste !
-  visual: {fileID: 21300000, guid: 358541a3db89a6f45956a5d4726d7312, type: 3}
-  prefab: {fileID: 3076607946269608411, guid: 9b0064252107b824baf7cd705f0814f9, type: 3}
+  name: Gants de fer
+  description: Des gants en metal plus hardu de se gratter le nez mais ils sassurent
+    une protection efficace !
+  visual: {fileID: 21300000, guid: 3f3f612e2e18b4742ba62c1d294abdc6, type: 3}
+  prefab: {fileID: 3231307489918178695, guid: d8a3f4c4f129aa044acf7f77194a88c0, type: 3}
   type: 1

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d8411de53d39f4eb911b8523012b36, type: 3}
+  m_Name: Helmet-Iron
+  m_EditorClassIdentifier: 
+  name: Casque de fer
+  description: Un casque en fer plutot robuste !
+  visual: {fileID: 21300000, guid: 358541a3db89a6f45956a5d4726d7312, type: 3}
+  prefab: {fileID: 4936670489480644561, guid: 55d07693c5d58b245b912b5b1abc1279, type: 3}
+  type: 1
