@@ -8,6 +8,9 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ItemData item;
     public Image itemVisual;
+
+    [SerializeField]
+    private ItemActionSystem actionSystem;
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (item != null)
@@ -21,7 +24,12 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void ClickOnSlot()
-    { 
-        Inventory.instance.OpenActionPanel(item, GetComponent<RectTransform>());
+    {
+        actionSystem.OpenActionPanel(item, GetComponent<RectTransform>());
+    }
+
+    public void ClickOnSlot(bool fromEquiped)
+    {
+        actionSystem.OpenActionPanel(item, GetComponent<RectTransform>(), fromEquiped);
     }
 }

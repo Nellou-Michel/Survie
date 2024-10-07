@@ -16,5 +16,6 @@ MonoBehaviour:
   description: Des gants en metal plus hardu de se gratter le nez mais ils sassurent
     une protection efficace !
   visual: {fileID: 21300000, guid: 3f3f612e2e18b4742ba62c1d294abdc6, type: 3}
-  prefab: {fileID: 3231307489918178695, guid: d8a3f4c4f129aa044acf7f77194a88c0, type: 3}
+  prefab: {fileID: 6607362544191729318, guid: ab630c4cfa4cc8343b878791d02fba60, type: 3}
   type: 1
+  equipmentType: 3

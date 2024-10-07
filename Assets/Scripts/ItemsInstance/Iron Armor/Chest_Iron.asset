@@ -18,3 +18,4 @@ MonoBehaviour:
   visual: {fileID: 21300000, guid: 5469508ff4cb6e44aa9fe68b67aa755b, type: 3}
   prefab: {fileID: 5693421104336969518, guid: ce4964c6205d0d741a9f961f2400cc6d, type: 3}
   type: 1
+  equipmentType: 2

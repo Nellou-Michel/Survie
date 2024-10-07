@@ -24,9 +24,8 @@ public enum EquipmentType
 {
     None,
     Head,
-    Shoulder,
     Chest,
-    Gloves,
-    Pant,
-    Boots
+    Hand,
+    Legs,
+    Feet
 }

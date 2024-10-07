@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d8411de53d39f4eb911b8523012b36, type: 3}
+  m_Name: Wood
+  m_EditorClassIdentifier: 
+  name: Buche
+  description: Une bonne grosse buche de bois
+  visual: {fileID: 21300000, guid: e18d6a30c07f8bf46851db87abaf9171, type: 3}
+  prefab: {fileID: 2760706107344875913, guid: 908526b92f208a24f85ffabd0062183e, type: 3}
+  type: 0
+  equipmentType: 0
